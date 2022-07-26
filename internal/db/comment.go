@@ -15,7 +15,7 @@ type CommentRow struct {
 	Author sql.NullString
 }
 
-func converCommentRowToComment(c CommentRow) comment.Comment {
+func convertCommentRowToComment(c CommentRow) comment.Comment {
 	return comment.Comment{
 		ID:     c.ID,
 		Slug:   c.Slug.String,
