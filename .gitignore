@@ -21,4 +21,5 @@
 go.work
 
 # jetbrains files
+*.idea
 vcs.xml
