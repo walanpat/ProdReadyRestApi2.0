@@ -1,7 +1,9 @@
 package main
 
 import (
+	"context"
 	"fmt"
+	"github.com/TutorialEdge/go-rest-api-course/internal/comment"
 	"github.com/TutorialEdge/go-rest-api-course/internal/db"
 )
 
@@ -17,6 +19,13 @@ func Run() error {
 		return err
 	}
 	fmt.Println("Successfully Pinged our DB")
+
+	cmtService := comment.NewService(db)
+	fmt.Println(cmtService.GetComment(
+		context.Background(),
+		"1",
+	))
+
 	return nil
 }
 func main() {
