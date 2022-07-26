@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	ErrFetchingComment = errors.New("Failed to fetch comment by ID")
-	ErrNotImplemented  = errors.New("Not Implemented")
+	ErrFetchingComment = errors.New("failed to fetch comment by ID")
+	ErrNotImplemented  = errors.New("not Implemented")
 )
 
 // Comment - a structure for our comment objects
