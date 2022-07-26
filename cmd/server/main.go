@@ -21,9 +21,19 @@ func Run() error {
 	fmt.Println("Successfully Pinged our DB")
 
 	cmtService := comment.NewService(db)
+
+	cmtService.PostComment(
+		context.Background(),
+		comment.Comment{
+			ID:     "12345",
+			Slug:   "manual-test",
+			Author: "Alan",
+			Body:   "HelloWorld",
+		})
+
 	fmt.Println(cmtService.GetComment(
 		context.Background(),
-		"1",
+		"12345",
 	))
 
 	return nil
