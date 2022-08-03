@@ -4,8 +4,8 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"github.com/TutorialEdge/go-rest-api-course/internal/comment"
 	uuid "github.com/satori/go.uuid"
+	"go-rest-api/internal/comment"
 )
 
 type CommentRow struct {
@@ -71,7 +71,7 @@ func (d *Database) PostComment(ctx context.Context, cmt comment.Comment) (commen
 func (d *Database) DeleteComment(ctx context.Context, id string) error {
 	_, err := d.Client.ExecContext(
 		ctx,
-		`DELETE FROM commnets where id = $12345`,
+		`DELETE FROM comments where id = $12345`,
 		id,
 	)
 	if err != nil {

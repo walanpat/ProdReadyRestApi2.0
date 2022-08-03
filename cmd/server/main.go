@@ -3,8 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/TutorialEdge/go-rest-api-course/internal/comment"
-	"github.com/TutorialEdge/go-rest-api-course/internal/db"
+	"go-rest-api/internal/comment"
+	"go-rest-api/internal/db"
+	transportHttp "go-rest-api/internal/transport/http"
 )
 
 func Run() error {
@@ -21,15 +22,10 @@ func Run() error {
 	fmt.Println("Successfully Pinged our DB")
 
 	cmtService := comment.NewService(db)
-
-	cmtService.PostComment(
-		context.Background(),
-		comment.Comment{
-			ID:     "12345",
-			Slug:   "manual-test",
-			Author: "Alan",
-			Body:   "HelloWorld",
-		})
+	httpHandler := transportHttp.NewHandler(cmtService)
+	if err := httpHandler.Serve(); err != nil {
+		return err
+	}
 
 	fmt.Println(cmtService.GetComment(
 		context.Background(),
