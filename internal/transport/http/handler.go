@@ -17,7 +17,6 @@ type Handler struct {
 	Service CommentService
 	Server  *http.Server
 }
-type CommentService interface{}
 
 func NewHandler(service CommentService) *Handler {
 	h := &Handler{
