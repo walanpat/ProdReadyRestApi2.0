@@ -38,10 +38,10 @@ func (h *Handler) mapRoutes() {
 	h.Router.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hello World")
 	})
-	h.Router.HandleFunc("/api/v1/comment", h.PostComment).Methods("POST")
-	h.Router.HandleFunc("/api/v1/comment/{id}", h.PostComment).Methods("GET")
-	h.Router.HandleFunc("/api/v1/comment/{id}", h.PostComment).Methods("PUT")
-	h.Router.HandleFunc("/api/v1/comment/{id}", h.PostComment).Methods("POST")
+	h.Router.HandleFunc("/api/v1/comment", JWTAuth(h.PostComment)).Methods("POST")
+	h.Router.HandleFunc("/api/v1/comment/{id}", JWTAuth(h.PostComment)).Methods("GET")
+	h.Router.HandleFunc("/api/v1/comment/{id}", JWTAuth(h.PostComment)).Methods("PUT")
+	h.Router.HandleFunc("/api/v1/comment/{id}", JWTAuth(h.PostComment)).Methods("POST")
 	h.Router.HandleFunc("/api/v1/comment/{id}", h.PostComment).Methods("GET")
 
 }
