@@ -67,15 +67,16 @@ func (d *Database) PostComment(ctx context.Context, cmt comment.Comment) (commen
 		return comment.Comment{}, fmt.Errorf("failed to insert comment: %w", err)
 	}
 	if err := rows.Close(); err != nil {
-		return comment.Comment{}, fmt.Errorf("failed to insert comment: %w", err)
+		return comment.Comment{}, fmt.Errorf("failed to close rows: %w", err)
 	}
+
 	return cmt, nil
 }
 
 func (d *Database) DeleteComment(ctx context.Context, id string) error {
 	_, err := d.Client.ExecContext(
 		ctx,
-		`DELETE FROM comments where id = $12345`,
+		`DELETE FROM comments where id = $1`,
 		id,
 	)
 	if err != nil {
